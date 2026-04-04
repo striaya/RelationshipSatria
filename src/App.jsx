@@ -7,18 +7,18 @@ import './index.css'
 
 /* ─── DATA ─────────────────────────────────────────────── */
 const GALLERY = [
-  { id: 1,  label: 'Pacarnya Satria',  src: '/src/photo/fani1.jpeg', tall: true  },
-  { id: 2,  label: 'Pacarnya Satria',       src: '/src/photo/fani2.jpeg', tall: false },
-  { id: 3,  label: 'Pacarnya Satria',    src: '/src/photo/fani3.jpeg', tall: false },
-  { id: 4,  label: 'Pacarnya Satria',    src: '/src/photo/fanikecil.jpeg', tall: true  },
-  { id: 5,  label: 'Pacarnya Satria',       src: '/src/photo/fani5.jpeg', tall: false },
-  { id: 6,  label: 'Pacarnya Satria',      src: '/src/photo/fani6.jpeg', tall: false },
-  { id: 7,  label: 'Pacarnya Satria',   src: '/src/photo/fani7.jpeg', tall: true  },
-  { id: 8,  label: 'Pacarnya Satria',      src: '/src/photo/fani8.jpeg', tall: false },
-  { id: 9,  label: 'Pacarnya Satria',     src: '/src/photo/fani9.jpeg', tall: false },
-  { id: 10, label: 'Pacarnya Satria',     src: '/src/photo/fani10.jpeg', tall: true  },
-  { id: 11, label: 'Pacarnya Satria',         src: '/src/photo/fani11.jpeg', tall: false },
-  { id: 12, label: 'Pacarnya Satria',         src: '/src/photo/fani12.jpeg', tall: false },
+  { id: 1,  label: 'Pacarnya Satria',  src: '/photo/fani1.jpeg', tall: true  },
+  { id: 2,  label: 'Pacarnya Satria',       src: '/photo/fani2.jpeg', tall: false },
+  { id: 3,  label: 'Pacarnya Satria',    src: '/photo/fani3.jpeg', tall: false },
+  { id: 4,  label: 'Pacarnya Satria',    src: '/photo/fanikecil.jpeg', tall: true  },
+  { id: 5,  label: 'Pacarnya Satria',       src: '/photo/fani5.jpeg', tall: false },
+  { id: 6,  label: 'Pacarnya Satria',      src: '/photo/fani6.jpeg', tall: false },
+  { id: 7,  label: 'Pacarnya Satria',   src: '/photo/fani7.jpeg', tall: true  },
+  { id: 8,  label: 'Pacarnya Satria',      src: '/photo/fani8.jpeg', tall: false },
+  { id: 9,  label: 'Pacarnya Satria',     src: '/photo/fani9.jpeg', tall: false },
+  { id: 10, label: 'Pacarnya Satria',     src: '/photo/fani10.jpeg', tall: true  },
+  { id: 11, label: 'Pacarnya Satria',         src: '/photo/fani11.jpeg', tall: false },
+  { id: 12, label: 'Pacarnya Satria',         src: '/photo/fani12.jpeg', tall: false },
 ]
 
 const TIMELINE = [
