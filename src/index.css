@@ -291,64 +291,148 @@ body {
   font-size: 0.95rem; color: white; letter-spacing: 0.04em;
 }
 
-/* ── Lightbox ── */
+/* =========================
+   LIGHTBOX RESPONSIVE FIX
+========================= */
+
 .lb-backdrop {
-  position: fixed; inset: 0;
-  background: rgba(20,10,12,0.96);
-  z-index: 8000;
-  display: flex; align-items: center; justify-content: center;
-  animation: pgIn 0.2s ease;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   padding: 1rem;
 }
 
-.lb-box { position: relative; }
+.lb-box {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
 
+  background: rgba(20, 20, 20, 0.9);
+  border-radius: 18px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0 20px 70px rgba(0,0,0,0.55);
+  animation: fadeZoom 0.25s ease;
+}
+
+/* gambar auto fit */
 .lb-img {
-  max-width: 88vw; max-height: 88vh;
-  object-fit: contain; display: block;
-  border-radius: 10px;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+  width: 100%;
+  height: 100%;
+  max-height: 75vh;
+
+  object-fit: contain;
+  display: block;
+  background: black;
 }
 
-.lb-ph {
-  width: 320px; height: 440px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 1rem;
-  background: var(--soft); border-radius: 10px; color: var(--taupe);
-}
-.lb-ph p { font-size: 0.75rem; letter-spacing: 0.06em; }
-
-.lb-close {
-  position: absolute; top: -14px; right: -14px;
-  width: 34px; height: 34px; border-radius: 50%;
-  background: var(--rose); color: white; border: none;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: all 0.2s ease;
-}
-.lb-close:hover { background: var(--rose-deep); transform: scale(1.1); }
-
-.lb-nav {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 40px; height: 40px; border-radius: 50%;
-  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-  color: white; display: flex; align-items: center; justify-content: center;
-  cursor: pointer; transition: all 0.2s ease;
-}
-.lb-nav:hover { background: rgba(201,116,127,0.4); border-color: var(--rose); }
-.lb-prev { left: -56px; }
-.lb-next { right: -56px; }
-@media (max-width: 600px) { .lb-prev { left: 6px; } .lb-next { right: 6px; } }
-
+/* caption bawah */
 .lb-caption {
-  text-align: center; margin-top: 1rem;
-  font-family: 'Cormorant', serif; font-style: italic;
-  font-size: 0.95rem; color: rgba(255,255,255,0.5);
-  letter-spacing: 0.06em;
+  padding: 0.9rem 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: white;
+  background: rgba(0,0,0,0.55);
 }
+
+/* counter pojok */
 .lb-counter {
-  text-align: center; margin-top: 0.3rem;
-  font-size: 0.65rem; color: rgba(255,255,255,0.25);
-  letter-spacing: 0.12em;
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.8);
+  background: rgba(0,0,0,0.45);
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+/* tombol close */
+.lb-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.55);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* tombol next prev */
+.lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+
+  border: none;
+  cursor: pointer;
+
+  background: rgba(0,0,0,0.55);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.2s;
+}
+
+.lb-nav:hover {
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.lb-prev { left: 12px; }
+.lb-next { right: 12px; }
+
+@keyframes fadeZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* mobile lebih rapat */
+@media (max-width: 600px) {
+  .lb-box {
+    max-width: 100%;
+    max-height: 95vh;
+    border-radius: 14px;
+  }
+
+  .lb-img {
+    max-height: 70vh;
+  }
+
+  .lb-nav {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 /* ═══════════════════════════════

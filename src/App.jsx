@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import {
   Heart, Camera, BookOpen, Mail, Home, Image,
-  ChevronLeft, ChevronRight, X, Clock, ArrowRight
+  ChevronLeft, ChevronRight, X, Clock, ArrowRight,
+  UtensilsCrossed
 } from 'lucide-react'
 import './index.css'
+import { Image as ImageIcon } from 'lucide-react'
+
 
 /* ─── DATA ─────────────────────────────────────────────── */
 const GALLERY = [
@@ -19,6 +22,58 @@ const GALLERY = [
   { id: 10, label: 'Pacarnya Satria',     src: '/photo/fani10.jpeg', tall: true  },
   { id: 11, label: 'Pacarnya Satria',         src: '/photo/fani11.jpeg', tall: false },
   { id: 12, label: 'Pacarnya Satria',         src: '/photo/fani12.jpeg', tall: false },
+  { id: 13, label: 'Pacarnya Satria',         src: '/photo/fanni13.jpeg', tall: false },
+  { id: 14, label: 'Pacarnya Satria',         src: '/photo/fani14.jpeg', tall: false },
+  { id: 15, label: 'Pacarnya Satria',         src: '/photo/fani15.jpeg', tall: false },
+  { id: 16, label: 'Pacarnya Satria',         src: '/photo/fani16.jpeg', tall: false },
+  { id: 17, label: 'Pacarnya Satria',         src: '/photo/fani17.jpeg', tall: false },
+  { id: 18, label: 'Pacarnya Satria',         src: '/photo/fani18.jpeg', tall: false },
+  { id: 19, label: 'Pacarnya Satria',         src: '/photo/fani19.jpeg', tall: false },
+  { id: 20, label: 'Pacarnya Satria',         src: '/photo/fani20.jpeg', tall: false },
+  { id: 21, label: 'Pacarnya Satria',         src: '/photo/fani21.jpeg', tall: false },
+  { id: 22, label: 'Pacarnya Satria',         src: '/photo/fani22.jpeg', tall: false },
+  { id: 23, label: 'Pacarnya Satria',         src: '/photo/fani23.jpeg', tall: false },
+  { id: 24, label: 'Pacarnya Satria',         src: '/photo/fani24.jpeg', tall: false },
+  { id: 25, label: 'Pacarnya Satria',         src: '/photo/fani25.jpeg', tall: false },
+  { id: 26, label: 'Pacarnya Satria',         src: '/photo/fani26.jpeg', tall: false },
+  { id: 27, label: 'Pacarnya Satria',         src: '/photo/fani27.jpeg', tall: false },
+  { id: 28, label: 'Pacarnya Satria',         src: '/photo/fani28.jpeg', tall: false },
+  { id: 29, label: 'Pacarnya Satria',         src: '/photo/fani29.jpeg', tall: false },
+  { id: 30, label: 'Pacarnya Satria',         src: '/photo/fani30.jpeg', tall: false },
+  { id: 31, label: 'Pacarnya Satria',         src: '/photo/fani31.jpeg', tall: false },
+  { id: 32, label: 'Pacarnya Satria',         src: '/photo/fani32.jpeg', tall: false },
+  { id: 33, label: 'Pacarnya Satria',         src: '/photo/fani33.jpeg', tall: false },
+  { id: 34, label: 'Pacarnya Satria',         src: '/photo/fani34.jpeg', tall: false },
+  { id: 35, label: 'Pacarnya Satria',         src: '/photo/fani35.jpeg', tall: false },
+  { id: 36, label: 'Pacarnya Satria',         src: '/photo/fani36.jpeg', tall: false },
+  { id: 37, label: 'Pacarnya Satria',         src: '/photo/fani37.jpeg', tall: false },
+  { id: 38, label: 'Pacarnya Satria',         src: '/photo/fani38.jpeg', tall: false },
+  { id: 39, label: 'Pacarnya Satria',         src: '/photo/fani39.jpeg', tall: false },
+  { id: 40, label: 'Pacarnya Satria',         src: '/photo/fani40.jpeg', tall: false },
+  { id: 41, label: 'Pacarnya Satria',         src: '/photo/fani41.jpeg', tall: false },
+  { id: 42, label: 'Pacarnya Satria',         src: '/photo/fani42.jpeg', tall: false },
+  { id: 43, label: 'Pacarnya Satria',         src: '/photo/fani43.jpeg', tall: false },
+  { id: 44, label: 'Pacarnya Satria',         src: '/photo/fani44.jpeg', tall: false },
+  { id: 45, label: 'Pacarnya Satria',         src: '/photo/fani45.jpeg', tall: false },
+  { id: 46, label: 'Pacarnya Satria',         src: '/photo/fani46.jpeg', tall: false },
+  { id: 47, label: 'Pacarnya Satria',         src: '/photo/fani47.jpeg', tall: false },
+  { id: 48, label: 'Pacarnya Satria',         src: '/photo/fani48.jpeg', tall: false },
+  { id: 49, label: 'Pacarnya Satria',         src: '/photo/fani49.jpeg', tall: false },
+  { id: 50, label: 'Pacarnya Satria',         src: '/photo/fani50.jpeg', tall: false },
+  { id: 51, label: 'Pacarnya Satria',         src: '/photo/fani51.jpeg', tall: false },
+  { id: 52, label: 'Pacarnya Satria',         src: '/photo/fani52.jpeg', tall: false },
+  { id: 53, label: 'Pacarnya Satria',         src: '/photo/fani53.jpeg', tall: false },
+  { id: 54, label: 'Pacarnya Satria',         src: '/photo/fani54.jpeg', tall: false },
+  { id: 55, label: 'Pacarnya Satria',         src: '/photo/fani55.jpeg', tall: false },
+  { id: 56, label: 'Pacarnya Satria',         src: '/photo/fani56.jpeg', tall: false },
+  { id: 57, label: 'Pacarnya Satria',         src: '/photo/fani57.jpeg', tall: false },
+  { id: 58, label: 'Pacarnya Satria',         src: '/photo/fani58.jpeg', tall: false },
+  { id: 59, label: 'Pacarnya Satria',         src: '/photo/fani59.jpeg', tall: false },
+  { id: 60, label: 'Pacarnya Satria',         src: '/photo/fani60.jpeg', tall: false },
+  { id: 61, label: 'Pacarnya Satria',         src: '/photo/fani61.jpeg', tall: false },
+  { id: 62, label: 'Pacarnya Satria',         src: '/photo/fani62.jpeg', tall: false },
+  { id: 63, label: 'Pacarnya Satria',         src: '/photo/fani63.jpeg', tall: false },
+  { id: 64, label: 'Pacarnya Satria',         src: '/photo/fani64.jpeg', tall: false },
 ]
 
 const TIMELINE = [
@@ -33,9 +88,18 @@ const LETTERS = [
   { from: 'Lorem ipsum dolor sit amet.', date: '1 April 2026', text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis magni illo vero ipsa ea, quam possimus omnis et officiis temporibus nostrum eos!' },
 ]
 
+const FOODS = [
+  // { id: 1, name: 'Mie Ayam',       desc: 'Favoritnya dari kecil', src: null },
+  // { id: 2, name: 'Boba Taro',      desc: 'Minuman wajib tiap ketemu', src: null },
+  // { id: 3, name: 'Ayam Geprek',    desc: 'Level pedas paling tinggi', src: null },
+  // { id: 4, name: 'Matcha Latte',   desc: 'Tiap pagi harus ada', src: null },
+  { id: 5, name: 'Sushi',          desc: 'Makan Favorit', src: 'https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/X8oyuPJfYdskg0DaLHzIW/original/040009200_1605780934-Nikmati-Beragam-Manfaat-Sushi-untuk-Kesehatan-shutterstock_1470615731.jpg' },
+  // { id: 6, name: 'Strawberry Ice', desc: 'Dessert kesukaan', src: null },
+]
+
 const NAV = [
   { id: 'home',    label: 'Beranda', Icon: Home },
-  { id: 'gallery', label: 'Gallery', Icon: Image },
+  { id: 'gallery', label: 'Gallery', Icon: ImageIcon },
   { id: 'story',   label: 'Cerita',  Icon: BookOpen },
   { id: 'letters', label: 'Surat',   Icon: Mail },
 ]
@@ -237,9 +301,95 @@ function LettersPage() {
   )
 }
 
+/* ─── FOOD MODAL ─────────────────────────────────────── */
+function FoodModal({ onClose }) {
+  return (
+    <div style={{
+      position: 'fixed', inset: 0,
+      background: 'rgba(42,31,34,0.55)',
+      backdropFilter: 'blur(8px)',
+      zIndex: 7000,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: '1rem',
+      animation: 'pgIn 0.3s ease'
+    }} onClick={onClose}>
+      <div style={{
+        background: 'white', borderRadius: 20,
+        width: '100%', maxWidth: 520,
+        maxHeight: '85vh', overflow: 'hidden',
+        display: 'flex', flexDirection: 'column',
+        boxShadow: '0 30px 80px rgba(180,120,130,0.25)'
+      }} onClick={e => e.stopPropagation()}>
+
+        {/* Header */}
+        <div style={{
+          padding: '1.4rem 1.6rem',
+          borderBottom: '1px solid #ede5e7',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          flexShrink: 0
+        }}>
+          <div>
+            <div style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9747f', fontWeight: 700, marginBottom: 4 }}>
+              Her Favorites
+            </div>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', fontWeight: 400, color: '#2a1f22' }}>
+              Makanan <em style={{ fontStyle: 'italic', color: '#c9747f' }}>Favoritnya</em>
+            </h2>
+          </div>
+          <button onClick={onClose} style={{
+            width: 36, height: 36, borderRadius: '50%',
+            border: '1px solid #ede5e7', background: 'none',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: 'pointer', color: '#8a7a7c', transition: 'all 0.2s'
+          }}>
+            <X size={15} />
+          </button>
+        </div>
+
+        {/* Grid */}
+        <div style={{
+          overflowY: 'auto', padding: '1.2rem 1.4rem',
+          display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.9rem'
+        }}>
+          {FOODS.map(food => (
+            <div key={food.id} style={{
+              borderRadius: 14, overflow: 'hidden',
+              border: '1px solid #ede5e7',
+              background: '#faf9f7',
+              transition: 'all 0.25s ease'
+            }}>
+              {/* Foto atau placeholder */}
+              <div style={{
+                aspectRatio: '4/3', background: 'linear-gradient(135deg, #f4f1ee, #eedde0)',
+                display: 'flex', flexDirection: 'column',
+                alignItems: 'center', justifyContent: 'center',
+                gap: '0.4rem', overflow: 'hidden'
+              }}>
+                {food.src
+                  ? <img src={food.src} alt={food.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  : <>
+                      <UtensilsCrossed size={24} strokeWidth={1} color="#c9a0a8" />
+                      <span style={{ fontSize: '0.6rem', color: '#b89a9d', letterSpacing: '0.06em' }}>Tambah foto</span>
+                    </>
+                }
+              </div>
+              {/* Info */}
+              <div style={{ padding: '0.7rem 0.85rem' }}>
+                <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '0.95rem', color: '#2a1f22', marginBottom: 2 }}>{food.name}</div>
+                <div style={{ fontSize: '0.68rem', color: '#8a7a7c', lineHeight: 1.4 }}>{food.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ─── APP ────────────────────────────────────────────── */
 export default function App() {
-  const [page, setPage] = useState('home')
+const [page, setPage] = useState('home')
+const [showFood, setShowFood] = useState(false)
 
   const go = (id) => {
     setPage(id)
@@ -281,6 +431,29 @@ export default function App() {
         {page === 'story'   && <StoryPage />}
         {page === 'letters' && <LettersPage />}
       </main>
+{/* Tombol Makanan - Floating */}
+      <button
+        onClick={() => setShowFood(true)}
+        style={{
+          position: 'fixed',
+          bottom: showFood ? '-100px' : '90px',
+          right: '1.2rem',
+          width: 56, height: 56,
+          borderRadius: '50%',
+          background: 'linear-gradient(135deg, #c9747f, #a85965)',
+          border: 'none', color: 'white',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          cursor: 'pointer', zIndex: 800,
+          boxShadow: '0 6px 28px rgba(201,116,127,0.45)',
+          transition: 'all 0.35s cubic-bezier(0.4,0,0.2,1)',
+          transform: showFood ? 'scale(0)' : 'scale(1)'
+        }}
+        title="Makanan Favorit"
+      >
+        <UtensilsCrossed size={22} />
+      </button>
+
+      {showFood && <FoodModal onClose={() => setShowFood(false)} />}
     </>
   )
 }
