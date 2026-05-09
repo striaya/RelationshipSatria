@@ -1,84 +1,82 @@
 import { useState, useEffect } from 'react'
 import {
-  Heart, Camera, BookOpen, Mail, Home, Image,
+  Heart, Camera, BookOpen, Mail, Home,
   ChevronLeft, ChevronRight, X, Clock, ArrowRight,
   UtensilsCrossed
 } from 'lucide-react'
 import './index.css'
 import { Image as ImageIcon } from 'lucide-react'
 
-
 /* ─── DATA ─────────────────────────────────────────────── */
 const GALLERY = [
-  { id: 1,  label: 'Pacarnya Satria',  src: '/photo/fani1.jpeg', tall: true  },
-  { id: 2,  label: 'Pacarnya Satria',       src: '/photo/fani2.jpeg', tall: false },
-  { id: 3,  label: 'Pacarnya Satria',    src: '/photo/fani3.jpeg', tall: false },
-  { id: 4,  label: 'Pacarnya Satria',    src: '/photo/fanikecil.jpeg', tall: true  },
-  { id: 5,  label: 'Pacarnya Satria',       src: '/photo/fani5.jpeg', tall: false },
-  { id: 6,  label: 'Pacarnya Satria',      src: '/photo/fani6.jpeg', tall: false },
-  { id: 7,  label: 'Pacarnya Satria',   src: '/photo/fani7.jpeg', tall: true  },
-  { id: 8,  label: 'Pacarnya Satria',      src: '/photo/fani8.jpeg', tall: false },
-  { id: 9,  label: 'Pacarnya Satria',     src: '/photo/fani9.jpeg', tall: false },
-  { id: 10, label: 'Pacarnya Satria',     src: '/photo/fani10.jpeg', tall: true  },
-  { id: 11, label: 'Pacarnya Satria',         src: '/photo/fani11.jpeg', tall: false },
-  { id: 12, label: 'Pacarnya Satria',         src: '/photo/fani12.jpeg', tall: false },
-  { id: 13, label: 'Pacarnya Satria',         src: '/photo/fanni13.jpeg', tall: false },
-  { id: 14, label: 'Pacarnya Satria',         src: '/photo/fani14.jpeg', tall: false },
-  { id: 15, label: 'Pacarnya Satria',         src: '/photo/fani15.jpeg', tall: false },
-  { id: 16, label: 'Pacarnya Satria',         src: '/photo/fani16.jpeg', tall: false },
-  { id: 17, label: 'Pacarnya Satria',         src: '/photo/fani17.jpeg', tall: false },
-  { id: 18, label: 'Pacarnya Satria',         src: '/photo/fani18.jpeg', tall: false },
-  { id: 19, label: 'Pacarnya Satria',         src: '/photo/fani19.jpeg', tall: false },
-  { id: 20, label: 'Pacarnya Satria',         src: '/photo/fani20.jpeg', tall: false },
-  { id: 21, label: 'Pacarnya Satria',         src: '/photo/fani21.jpeg', tall: false },
-  { id: 22, label: 'Pacarnya Satria',         src: '/photo/fani22.jpeg', tall: false },
-  { id: 23, label: 'Pacarnya Satria',         src: '/photo/fani23.jpeg', tall: false },
-  { id: 24, label: 'Pacarnya Satria',         src: '/photo/fani24.jpeg', tall: false },
-  { id: 25, label: 'Pacarnya Satria',         src: '/photo/fani25.jpeg', tall: false },
-  { id: 26, label: 'Pacarnya Satria',         src: '/photo/fani26.jpeg', tall: false },
-  { id: 27, label: 'Pacarnya Satria',         src: '/photo/fani27.jpeg', tall: false },
-  { id: 28, label: 'Pacarnya Satria',         src: '/photo/fani28.jpeg', tall: false },
-  { id: 29, label: 'Pacarnya Satria',         src: '/photo/fani29.jpeg', tall: false },
-  { id: 30, label: 'Pacarnya Satria',         src: '/photo/fani30.jpeg', tall: false },
-  { id: 31, label: 'Pacarnya Satria',         src: '/photo/fani31.jpeg', tall: false },
-  { id: 32, label: 'Pacarnya Satria',         src: '/photo/fani32.jpeg', tall: false },
-  { id: 33, label: 'Pacarnya Satria',         src: '/photo/fani33.jpeg', tall: false },
-  { id: 34, label: 'Pacarnya Satria',         src: '/photo/fani34.jpeg', tall: false },
-  { id: 35, label: 'Pacarnya Satria',         src: '/photo/fani35.jpeg', tall: false },
-  { id: 36, label: 'Pacarnya Satria',         src: '/photo/fani36.jpeg', tall: false },
-  { id: 37, label: 'Pacarnya Satria',         src: '/photo/fani37.jpeg', tall: false },
-  { id: 38, label: 'Pacarnya Satria',         src: '/photo/fani38.jpeg', tall: false },
-  { id: 39, label: 'Pacarnya Satria',         src: '/photo/fani39.jpeg', tall: false },
-  { id: 40, label: 'Pacarnya Satria',         src: '/photo/fani40.jpeg', tall: false },
-  { id: 41, label: 'Pacarnya Satria',         src: '/photo/fani41.jpeg', tall: false },
-  { id: 42, label: 'Pacarnya Satria',         src: '/photo/fani42.jpeg', tall: false },
-  { id: 43, label: 'Pacarnya Satria',         src: '/photo/fani43.jpeg', tall: false },
-  { id: 44, label: 'Pacarnya Satria',         src: '/photo/fani44.jpeg', tall: false },
-  { id: 45, label: 'Pacarnya Satria',         src: '/photo/fani45.jpeg', tall: false },
-  { id: 46, label: 'Pacarnya Satria',         src: '/photo/fani46.jpeg', tall: false },
-  { id: 47, label: 'Pacarnya Satria',         src: '/photo/fani47.jpeg', tall: false },
-  { id: 48, label: 'Pacarnya Satria',         src: '/photo/fani48.jpeg', tall: false },
-  { id: 49, label: 'Pacarnya Satria',         src: '/photo/fani49.jpeg', tall: false },
-  { id: 50, label: 'Pacarnya Satria',         src: '/photo/fani50.jpeg', tall: false },
-  { id: 51, label: 'Pacarnya Satria',         src: '/photo/fani51.jpeg', tall: false },
-  { id: 52, label: 'Pacarnya Satria',         src: '/photo/fani52.jpeg', tall: false },
-  { id: 53, label: 'Pacarnya Satria',         src: '/photo/fani53.jpeg', tall: false },
-  { id: 54, label: 'Pacarnya Satria',         src: '/photo/fani54.jpeg', tall: false },
-  { id: 55, label: 'Pacarnya Satria',         src: '/photo/fani55.jpeg', tall: false },
-  { id: 56, label: 'Pacarnya Satria',         src: '/photo/fani56.jpeg', tall: false },
-  { id: 57, label: 'Pacarnya Satria',         src: '/photo/fani57.jpeg', tall: false },
-  { id: 58, label: 'Pacarnya Satria',         src: '/photo/fani58.jpeg', tall: false },
-  { id: 59, label: 'Pacarnya Satria',         src: '/photo/fani59.jpeg', tall: false },
-  { id: 60, label: 'Pacarnya Satria',         src: '/photo/fani60.jpeg', tall: false },
-  { id: 61, label: 'Pacarnya Satria',         src: '/photo/fani61.jpeg', tall: false },
-  { id: 62, label: 'Pacarnya Satria',         src: '/photo/fani62.jpeg', tall: false },
-  { id: 63, label: 'Pacarnya Satria',         src: '/photo/fani63.jpeg', tall: false },
-  { id: 64, label: 'Pacarnya Satria',         src: '/photo/fani64.jpeg', tall: false },
+  { id: 1, label: 'Pacarnya Satria', src: '/photo/fani1.jpeg', tall: true },
+  { id: 2, label: 'Pacarnya Satria', src: '/photo/fani2.jpeg', tall: false },
+  { id: 3, label: 'Pacarnya Satria', src: '/photo/fani3.jpeg', tall: false },
+  { id: 4, label: 'Pacarnya Satria', src: '/photo/fanikecil.jpeg', tall: true },
+  { id: 5, label: 'Pacarnya Satria', src: '/photo/fani5.jpeg', tall: false },
+  { id: 6, label: 'Pacarnya Satria', src: '/photo/fani6.jpeg', tall: false },
+  { id: 7, label: 'Pacarnya Satria', src: '/photo/fani7.jpeg', tall: true },
+  { id: 8, label: 'Pacarnya Satria', src: '/photo/fani8.jpeg', tall: false },
+  { id: 9, label: 'Pacarnya Satria', src: '/photo/fani9.jpeg', tall: false },
+  { id: 10, label: 'Pacarnya Satria', src: '/photo/fani10.jpeg', tall: true },
+  { id: 11, label: 'Pacarnya Satria', src: '/photo/fani11.jpeg', tall: false },
+  { id: 12, label: 'Pacarnya Satria', src: '/photo/fani12.jpeg', tall: false },
+  { id: 13, label: 'Pacarnya Satria', src: '/photo/fanni13.jpeg', tall: false },
+  { id: 14, label: 'Pacarnya Satria', src: '/photo/fani14.jpeg', tall: false },
+  { id: 15, label: 'Pacarnya Satria', src: '/photo/fani15.jpeg', tall: false },
+  { id: 16, label: 'Pacarnya Satria', src: '/photo/fani16.jpeg', tall: false },
+  { id: 17, label: 'Pacarnya Satria', src: '/photo/fani17.jpeg', tall: false },
+  { id: 18, label: 'Pacarnya Satria', src: '/photo/fani18.jpeg', tall: false },
+  { id: 19, label: 'Pacarnya Satria', src: '/photo/fani19.jpeg', tall: false },
+  { id: 20, label: 'Pacarnya Satria', src: '/photo/fani20.jpeg', tall: false },
+  { id: 21, label: 'Pacarnya Satria', src: '/photo/fani21.jpeg', tall: false },
+  { id: 22, label: 'Pacarnya Satria', src: '/photo/fani22.jpeg', tall: false },
+  { id: 23, label: 'Pacarnya Satria', src: '/photo/fani23.jpeg', tall: false },
+  { id: 24, label: 'Pacarnya Satria', src: '/photo/fani24.jpeg', tall: false },
+  { id: 25, label: 'Pacarnya Satria', src: '/photo/fani25.jpeg', tall: false },
+  { id: 26, label: 'Pacarnya Satria', src: '/photo/fani26.jpeg', tall: false },
+  { id: 27, label: 'Pacarnya Satria', src: '/photo/fani27.jpeg', tall: false },
+  { id: 28, label: 'Pacarnya Satria', src: '/photo/fani28.jpeg', tall: false },
+  { id: 29, label: 'Pacarnya Satria', src: '/photo/fani29.jpeg', tall: false },
+  { id: 30, label: 'Pacarnya Satria', src: '/photo/fani30.jpeg', tall: false },
+  { id: 31, label: 'Pacarnya Satria', src: '/photo/fani31.jpeg', tall: false },
+  { id: 32, label: 'Pacarnya Satria', src: '/photo/fani32.jpeg', tall: false },
+  { id: 33, label: 'Pacarnya Satria', src: '/photo/fani33.jpeg', tall: false },
+  { id: 34, label: 'Pacarnya Satria', src: '/photo/fani34.jpeg', tall: false },
+  { id: 35, label: 'Pacarnya Satria', src: '/photo/fani35.jpeg', tall: false },
+  { id: 36, label: 'Pacarnya Satria', src: '/photo/fani36.jpeg', tall: false },
+  { id: 37, label: 'Pacarnya Satria', src: '/photo/fani37.jpeg', tall: false },
+  { id: 38, label: 'Pacarnya Satria', src: '/photo/fani38.jpeg', tall: false },
+  { id: 39, label: 'Pacarnya Satria', src: '/photo/fani39.jpeg', tall: false },
+  { id: 40, label: 'Pacarnya Satria', src: '/photo/fani40.jpeg', tall: false },
+  { id: 41, label: 'Pacarnya Satria', src: '/photo/fani41.jpeg', tall: false },
+  { id: 42, label: 'Pacarnya Satria', src: '/photo/fani42.jpeg', tall: false },
+  { id: 43, label: 'Pacarnya Satria', src: '/photo/fani43.jpeg', tall: false },
+  { id: 44, label: 'Pacarnya Satria', src: '/photo/fani44.jpeg', tall: false },
+  { id: 45, label: 'Pacarnya Satria', src: '/photo/fani45.jpeg', tall: false },
+  { id: 46, label: 'Pacarnya Satria', src: '/photo/fani46.jpeg', tall: false },
+  { id: 47, label: 'Pacarnya Satria', src: '/photo/fani47.jpeg', tall: false },
+  { id: 48, label: 'Pacarnya Satria', src: '/photo/fani48.jpeg', tall: false },
+  { id: 49, label: 'Pacarnya Satria', src: '/photo/fani49.jpeg', tall: false },
+  { id: 50, label: 'Pacarnya Satria', src: '/photo/fani50.jpeg', tall: false },
+  { id: 51, label: 'Pacarnya Satria', src: '/photo/fani51.jpeg', tall: false },
+  { id: 52, label: 'Pacarnya Satria', src: '/photo/fani52.jpeg', tall: false },
+  { id: 53, label: 'Pacarnya Satria', src: '/photo/fani53.jpeg', tall: false },
+  { id: 54, label: 'Pacarnya Satria', src: '/photo/fani54.jpeg', tall: false },
+  { id: 55, label: 'Pacarnya Satria', src: '/photo/fani55.jpeg', tall: false },
+  { id: 56, label: 'Pacarnya Satria', src: '/photo/fani56.jpeg', tall: false },
+  { id: 57, label: 'Pacarnya Satria', src: '/photo/fani57.jpeg', tall: false },
+  { id: 58, label: 'Pacarnya Satria', src: '/photo/fani58.jpeg', tall: false },
+  { id: 59, label: 'Pacarnya Satria', src: '/photo/fani59.jpeg', tall: false },
+  { id: 60, label: 'Pacarnya Satria', src: '/photo/fani60.jpeg', tall: false },
+  { id: 61, label: 'Pacarnya Satria', src: '/photo/fani61.jpeg', tall: false },
+  { id: 62, label: 'Pacarnya Satria', src: '/photo/fani62.jpeg', tall: false },
+  { id: 63, label: 'Pacarnya Satria', src: '/photo/fani63.jpeg', tall: false },
+  { id: 64, label: 'Pacarnya Satria', src: '/photo/fani64.jpeg', tall: false },
 ]
 
 const TIMELINE = [
   { date: '', event: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, molestias.', desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, sunt.' },
-  // { date: 'Maret 2026', event: 'Kencan Pertama', desc: 'Segelas kopi, berjam-jam percakapan, dan tawa yang tidak berhenti. Waktu terasa terlalu cepat berlalu.' },
   { date: '', event: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur praesentium fuga et?', desc: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit, sit.' },
 ]
 
@@ -89,19 +87,15 @@ const LETTERS = [
 ]
 
 const FOODS = [
-  // { id: 1, name: 'Mie Ayam',       desc: 'Favoritnya dari kecil', src: null },
-  // { id: 2, name: 'Boba Taro',      desc: 'Minuman wajib tiap ketemu', src: null },
-  // { id: 3, name: 'Ayam Geprek',    desc: 'Level pedas paling tinggi', src: null },
-  // { id: 4, name: 'Matcha Latte',   desc: 'Tiap pagi harus ada', src: null },
-  { id: 5, name: 'Sushi',          desc: 'Makan Favorit', src: 'https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/X8oyuPJfYdskg0DaLHzIW/original/040009200_1605780934-Nikmati-Beragam-Manfaat-Sushi-untuk-Kesehatan-shutterstock_1470615731.jpg' },
-  // { id: 6, name: 'Strawberry Ice', desc: 'Dessert kesukaan', src: null },
+  { id: 5, name: 'Sushi', desc: 'Makan Favorit', src: 'https://s3-publishing-cmn-svc-prd.s3.ap-southeast-1.amazonaws.com/article/X8oyuPJfYdskg0DaLHzIW/original/040009200_1605780934-Nikmati-Beragam-Manfaat-Sushi-untuk-Kesehatan-shutterstock_1470615731.jpg' },
 ]
 
 const NAV = [
-  { id: 'home',    label: 'Beranda', Icon: Home },
+  { id: 'home', label: 'Beranda', Icon: Home },
   { id: 'gallery', label: 'Gallery', Icon: ImageIcon },
-  { id: 'story',   label: 'Cerita',  Icon: BookOpen },
-  { id: 'letters', label: 'Surat',   Icon: Mail },
+  { id: 'fav', label: 'Favorite', Icon: Heart },
+  { id: 'story', label: 'Cerita', Icon: BookOpen },
+  { id: 'letters', label: 'Surat', Icon: Mail },
 ]
 
 /* ─── LIGHTBOX ────────────────────────────────────────── */
@@ -122,6 +116,7 @@ function Lightbox({ index, onClose, onPrev, onNext }) {
     <div className="lb-backdrop" onClick={onClose}>
       <div className="lb-box" onClick={e => e.stopPropagation()}>
         <button className="lb-close" onClick={onClose}><X size={14} /></button>
+
         {item.src
           ? <img className="lb-img" src={item.src} alt={item.label} />
           : (
@@ -131,8 +126,10 @@ function Lightbox({ index, onClose, onPrev, onNext }) {
             </div>
           )
         }
+
         <button className="lb-nav lb-prev" onClick={onPrev}><ChevronLeft size={18} /></button>
         <button className="lb-nav lb-next" onClick={onNext}><ChevronRight size={18} /></button>
+
         <div className="lb-caption">{item.label}</div>
         <div className="lb-counter">{index + 1} / {GALLERY.length}</div>
       </div>
@@ -143,14 +140,25 @@ function Lightbox({ index, onClose, onPrev, onNext }) {
 /* ─── COUNTDOWN ──────────────────────────────────────── */
 function Countdown() {
   const [t, setT] = useState({ d: 0, h: 0, m: 0, s: 0 })
+
   useEffect(() => {
     const start = new Date('2026-03-22T00:00:00')
+
     const tick = () => {
       const diff = Date.now() - start.getTime()
-      setT({ d: Math.floor(diff / 86400000), h: Math.floor((diff % 86400000) / 3600000), m: Math.floor((diff % 3600000) / 60000), s: Math.floor((diff % 60000) / 1000) })
+      setT({
+        d: Math.floor(diff / 86400000),
+        h: Math.floor((diff % 86400000) / 3600000),
+        m: Math.floor((diff % 3600000) / 60000),
+        s: Math.floor((diff % 60000) / 1000)
+      })
     }
-    tick(); const id = setInterval(tick, 1000); return () => clearInterval(id)
+
+    tick()
+    const id = setInterval(tick, 1000)
+    return () => clearInterval(id)
   }, [])
+
   return (
     <div className="cd-wrap">
       <div className="cd-card">
@@ -178,47 +186,55 @@ function HomePage({ goGallery }) {
         <div className="hero-deco-right" />
         <div className="hero-bg-circle hbc1" />
         <div className="hero-bg-circle hbc2" />
+
         <div className="hero-inner">
           <div className="hero-eyebrow">
             <div className="hero-line" />
             Pacar Aku Inih
             <div className="hero-line" />
           </div>
+
           <h1 className="hero-title">
             Pacar Satria,
             <span className="hero-title-italic">Cantik Bangett</span>
           </h1>
+
           <p className="hero-sub">
             Kalo gapercaya liat aja sendiri fotonya
           </p>
+
           <button className="hero-btn" onClick={goGallery}>
             <Camera size={15} />
             Lihat Gallery Foto
             <ArrowRight size={14} />
           </button>
+
           <div className="scroll-hint">
             <div className="scroll-line" />
             <span>Scroll</span>
           </div>
         </div>
       </section>
+
       <Countdown />
     </div>
   )
 }
 
 /* ─── PAGE: GALLERY ──────────────────────────────────── */
-function GalleryPage() {
+function GalleryPage({ favorites, toggleFavorite }) {
   const [lb, setLb] = useState(null)
+
   return (
     <div className="page">
       <div className="gallery-page">
         <div className="pg-header">
           <div className="pg-tag">
             <div className="pg-tag-line" />
-              Pacarnya Satria
-           <div className="pg-tag-line" />
+            Pacarnya Satria
+            <div className="pg-tag-line" />
           </div>
+
           <h2 className="pg-title">Foto-Foto <em></em></h2>
           <p className="pg-desc">Cantik banget kan iyadong hehehe</p>
         </div>
@@ -226,6 +242,18 @@ function GalleryPage() {
         <div className="gal-grid">
           {GALLERY.map((item, idx) => (
             <div key={item.id} className="gal-item" onClick={() => setLb(idx)}>
+
+              <button
+                className={`fav-btn ${favorites.includes(item.id) ? "active" : ""}`}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  toggleFavorite(item.id)
+                }}
+                title="Tambah Favorite"
+              >
+                <Heart size={16} fill={favorites.includes(item.id) ? "currentColor" : "none"} />
+              </button>
+
               {item.src
                 ? <img className="gal-img" src={item.src} alt={item.label} />
                 : (
@@ -236,9 +264,11 @@ function GalleryPage() {
                   </div>
                 )
               }
+
               <div className="gal-overlay">
                 <span className="gal-label">{item.label}</span>
               </div>
+
             </div>
           ))}
         </div>
@@ -256,6 +286,63 @@ function GalleryPage() {
   )
 }
 
+/* ─── PAGE: FAVORITES ─────────────────────────────────── */
+function FavoritesPage({ favorites, toggleFavorite }) {
+  const favPhotos = GALLERY.filter(item => favorites.includes(item.id))
+
+  return (
+    <div className="page">
+      <div className="gallery-page">
+        <div className="pg-header">
+          <div className="pg-tag">
+            <div className="pg-tag-line" />
+            Favorite Photos
+            <div className="pg-tag-line" />
+          </div>
+
+          <h2 className="pg-title">
+            Foto <em>Kesukaan</em>
+          </h2>
+
+          <p className="pg-desc">
+            Ini foto-foto yang paling suka
+          </p>
+        </div>
+
+        {favPhotos.length === 0 ? (
+          <div className="fav-empty">
+            <Heart size={34} strokeWidth={1} />
+            <h3>Belum ada favorite</h3>
+            <p>Klik tombol favorite di Gallery untuk menyimpan foto favorit.</p>
+          </div>
+        ) : (
+          <div className="gal-grid">
+            {favPhotos.map((item) => (
+              <div key={item.id} className="gal-item">
+
+                <button
+                  className="fav-btn active"
+                  onClick={() => toggleFavorite(item.id)}
+                  title="Hapus Favorite"
+                >
+                  <Heart size={16} fill="currentColor" />
+                </button>
+
+                <img className="gal-img" src={item.src} alt={item.label} />
+
+                <div className="gal-overlay">
+                  <span className="gal-label">{item.label}</span>
+                </div>
+
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
 /* ─── PAGE: STORY ────────────────────────────────────── */
 function StoryPage() {
   return (
@@ -264,6 +351,7 @@ function StoryPage() {
         <div className="pg-tag"><div className="pg-tag-line" />Lorem, ipsum.<div className="pg-tag-line" /></div>
         <h2 className="pg-title">Cerita <em>Tentang Kita Berdua</em></h2>
       </div>
+
       <div className="story-wrap" style={{ paddingTop: '1rem' }}>
         <div className="timeline">
           {TIMELINE.map((t, i) => (
@@ -288,6 +376,7 @@ function LettersPage() {
         <div className="pg-tag"><div className="pg-tag-line" />Lorem, ipsum.<div className="pg-tag-line" /></div>
         <h2 className="pg-title">Lorem, ipsum. <em>Lorem, ipsum.</em></h2>
       </div>
+
       <div className="letters-wrap" style={{ paddingTop: '1rem' }}>
         {LETTERS.map((l, i) => (
           <div key={i} className="letter-card">
@@ -368,9 +457,9 @@ function FoodModal({ onClose }) {
                 {food.src
                   ? <img src={food.src} alt={food.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                   : <>
-                      <UtensilsCrossed size={24} strokeWidth={1} color="#c9a0a8" />
-                      <span style={{ fontSize: '0.6rem', color: '#b89a9d', letterSpacing: '0.06em' }}>Tambah foto</span>
-                    </>
+                    <UtensilsCrossed size={24} strokeWidth={1} color="#c9a0a8" />
+                    <span style={{ fontSize: '0.6rem', color: '#b89a9d', letterSpacing: '0.06em' }}>Tambah foto</span>
+                  </>
                 }
               </div>
               {/* Info */}
@@ -388,8 +477,24 @@ function FoodModal({ onClose }) {
 
 /* ─── APP ────────────────────────────────────────────── */
 export default function App() {
-const [page, setPage] = useState('home')
-const [showFood, setShowFood] = useState(false)
+  const [page, setPage] = useState('home')
+  const [showFood, setShowFood] = useState(false)
+  const [favorites, setFavorites] = useState([])
+
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("favorites") || "[]")
+    setFavorites(saved)
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites))
+  }, [favorites])
+
+  const toggleFavorite = (id) => {
+    setFavorites(prev =>
+      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+    )
+  }
 
   const go = (id) => {
     setPage(id)
@@ -404,10 +509,16 @@ const [showFood, setShowFood] = useState(false)
           <div className="brand-dot" />
           Our Love Story
         </div>
+
         <div className="nav-links">
           {NAV.map(({ id, label, Icon }) => (
-            <button key={id} className={`nav-btn ${page === id ? 'active' : ''}`} onClick={() => go(id)}>
-              <Icon size={13} />{label}
+            <button
+              key={id}
+              className={`nav-btn ${page === id ? 'active' : ''}`}
+              onClick={() => go(id)}
+            >
+              <Icon size={13} />
+              {label}
             </button>
           ))}
         </div>
@@ -417,7 +528,11 @@ const [showFood, setShowFood] = useState(false)
       <nav className="bottom-nav">
         <div className="bot-inner">
           {NAV.map(({ id, label, Icon }) => (
-            <button key={id} className={`bot-btn ${page === id ? 'active' : ''}`} onClick={() => go(id)}>
+            <button
+              key={id}
+              className={`bot-btn ${page === id ? 'active' : ''}`}
+              onClick={() => go(id)}
+            >
               <div className="bot-icon"><Icon size={21} strokeWidth={1.6} /></div>
               <span>{label}</span>
             </button>
@@ -426,12 +541,21 @@ const [showFood, setShowFood] = useState(false)
       </nav>
 
       <main className="shell">
-        {page === 'home'    && <HomePage goGallery={() => go('gallery')} />}
-        {page === 'gallery' && <GalleryPage />}
-        {page === 'story'   && <StoryPage />}
+        {page === 'home' && <HomePage goGallery={() => go('gallery')} />}
+
+        {page === 'gallery' && (
+          <GalleryPage favorites={favorites} toggleFavorite={toggleFavorite} />
+        )}
+
+        {page === 'fav' && (
+          <FavoritesPage favorites={favorites} toggleFavorite={toggleFavorite} />
+        )}
+
+        {page === 'story' && <StoryPage />}
         {page === 'letters' && <LettersPage />}
       </main>
-{/* Tombol Makanan - Floating */}
+
+      {/* Tombol Makanan - Floating */}
       <button
         onClick={() => setShowFood(true)}
         style={{

@@ -521,3 +521,70 @@ body {
 }
 .div-line { flex: 1; height: 1px; background: var(--border); }
 .div-icon { color: var(--rose-pale); }
+
+/* ═══════════════════════════════
+   FAVORITE BUTTON
+═══════════════════════════════ */
+.fav-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(20,10,12,0.45);
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+
+  transition: all 0.25s var(--ease);
+}
+
+.fav-btn:hover {
+  transform: scale(1.08);
+  background: rgba(201,116,127,0.55);
+  border-color: rgba(201,116,127,0.8);
+  color: white;
+}
+
+.fav-btn.active {
+  background: rgba(201,116,127,0.8);
+  border-color: rgba(255,255,255,0.5);
+  color: white;
+}
+
+/* Empty Favorite Page */
+.fav-empty {
+  text-align: center;
+  padding: 5rem 2rem;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--off), var(--white));
+  box-shadow: var(--shadow-md);
+  color: var(--taupe);
+}
+
+.fav-empty h3 {
+  margin-top: 1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--dark);
+}
+
+.fav-empty p {
+  margin-top: 0.6rem;
+  font-family: 'Cormorant', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
